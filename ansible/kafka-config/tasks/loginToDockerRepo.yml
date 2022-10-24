@@ -1,0 +1,4 @@
+---
+    - name: Login to stagerepo.agah.com Docker Registry
+      shell: |
+        docker login --username={{ repoUser }} --password={{ repoPass }}  {{ repoURL }}

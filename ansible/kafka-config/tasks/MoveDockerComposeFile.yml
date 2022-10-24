@@ -1,0 +1,10 @@
+---
+  - name: Write docker-compose file
+    copy:
+      src:  /home/kafka/docker-compose.yml
+      dest: /home/kafka
+
+  - name: Write docker-compose file
+    copy:
+      src:  /root/kafka/.env 
+      dest: /home/kafka

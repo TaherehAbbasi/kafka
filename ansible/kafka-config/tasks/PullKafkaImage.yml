@@ -1,0 +1,4 @@
+---
+      - name: pull kafka image
+        shell: |
+          sudo docker pull {{ repoURL }}/docker.local/kafka/kafka:1.1

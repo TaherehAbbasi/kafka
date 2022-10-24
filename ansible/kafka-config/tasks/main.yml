@@ -1,0 +1,8 @@
+---
+# tasks file for kafka
+  - import_tasks: loginToDockerRepo.yml
+  - import_tasks: PullZookeeperImage.yml
+  - import_tasks: PullKafkaImage.yml
+  - import_tasks: SetEnvironment.yml
+  - import_tasks: MoveDockerComposeFile.yml
+  - import_tasks: RunDockerCopmpose.yml

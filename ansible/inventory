@@ -1,0 +1,5 @@
+[all]
+192.168.222.131 ansible_user=ubuntu04 ansible_ssh_pass=titi
+#192.168.222.129 ansible_user=ubuntu03 ansible_ssh_pass=titi
+#192.168.222.128 ansible_user=ubuntu02 ansible_ssh_pass=titi
+

@@ -1,0 +1,8 @@
+---
+ - hosts: all
+   gather_facts: true
+   become: true
+   tasks:
+    - debug: var=inventory_hostname
+    - debug: var=ansible_hostname
+    - debug: var=hostvars

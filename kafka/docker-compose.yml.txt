@@ -1,0 +1,61 @@
+version: '2.1'
+
+services:
+  zoo1:
+    image: stagerepo.agah.com/docker.local/kafka/zookeeper:1.1
+    container_name: zoo1
+    ports:
+      - "2181:2181"
+    env_file:
+        - .env
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_SERVER_ID: ${ZOOKEEPERID1}
+
+      ZOOKEEPER_SERVERS: ${ZOOKEEPER1IP}:2888:3888
+    networks:
+      - kafka-network
+
+
+  kafka1:
+    image: stagerepo.agah.com/docker.local/kafka/kafka:1.1
+    container_name: kafka1
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    env_file:
+        - .env
+    environment:
+    - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${CURRENTSERVERIP1}:9092
+    - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
+    - KAFKA_ZOOKEEPER_CONNECT=${ZOOKEEPER1IP}:2181
+    - KAFKA_BROKER_ID=${BROKERIDKAFKA1}
+    - BOOTSTRAP_SERVERS=kafka1:9092,kafka2:9093
+    - ZOOKEEPER=${ZOOKEEPER1IP}:2181
+    networks:
+      - kafka-network
+
+  kafka2:
+    image: stagerepo.agah.com/docker.local/kafka/kafka:1.1
+    container_name: kafka2
+    ports:
+      - "9093:9093"
+      - "29093:29093"
+    env_file:
+        - .env
+    environment:
+    - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${CURRENTSERVERIP2}:9093
+    - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9093
+    - KAFKA_ZOOKEEPER_CONNECT=${ZOOKEEPER1IP}:2181
+    - KAFKA_BROKER_ID=${BROKERIDKAFKA2}
+    - BOOTSTRAP_SERVERS=kafka1:9092,kafka2:9093
+    - ZOOKEEPER=${ZOOKEEPER1IP}:2181
+    depends_on:
+      - zoo1
+    networks:
+      - kafka-network
+
+networks:
+  kafka-network:
+    driver: bridge
+

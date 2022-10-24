@@ -1,0 +1,4 @@
+---
+      - name: pull zookeeper image
+        shell: |
+          sudo docker pull {{ repoURL }}/docker.local/kafka/zookeeper:1.1

@@ -1,0 +1,7 @@
+---
+ - name: set-env
+   shell: |
+    echo "ZOOKEEPER1IP="{{ inventory_hostname }} >> /home/kafka/.env
+    echo "CURRENTSERVERIP1="{{ inventory_hostname }} >> /home/kafka/.env
+    echo "CURRENTSERVERIP2 ="{{ inventory_hostname }} >> /home/kafka/.env
+    

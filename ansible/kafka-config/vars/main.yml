@@ -1,0 +1,9 @@
+---
+# vars file for kafka
+
+repoURL: stagerepo.agah.com
+repoUser: admin
+repoPass: Operation@123
+Kafkalb: 192.168.222.131
+Kafka1: 192.168.222.131
+Kafka2: 192.168.222.131
